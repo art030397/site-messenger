@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/ite-messenger.iml" filepath="$PROJECT_DIR$/.idea/ite-messenger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../site-messenger/.idea/site-messenger.iml" filepath="$PROJECT_DIR$/../site-messenger/.idea/site-messenger.iml" />
     </modules>
   </component>
 </project>
