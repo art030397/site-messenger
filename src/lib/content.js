@@ -22,7 +22,7 @@ export default ()=>{
             </div>
         </div>
     </div>
-    <div id="mo231487" class="sm-o-body js-body open">
+    <div id="mo231487" class="sm-o-body js-body">
         <div class="o-b-history">
             <div>kmkmkm' klm'km' k'm'mk</div>
             <div>kmkmkm' klm'km' k'm'mk</div>
@@ -33,8 +33,7 @@ export default ()=>{
         </div>
 
         <div class="o-b-input">
-            <textarea class="b-i-textarea">
-            </textarea>
+            <textarea maxlength="1000" class="b-i-textarea" placeholder="Введите сообщение"></textarea>
             <div class="o-b-send"></div>
         </div>
         <div class="o-b-controls">

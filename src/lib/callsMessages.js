@@ -18,3 +18,7 @@ export const callsMessages =
             </div>
         </div>
     </div>`;
+
+export const callsProcessor = () => {
+
+}

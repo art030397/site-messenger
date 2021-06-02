@@ -1,3 +1,4 @@
+
 .c-m-hover{
   z-index: 4;
   position: absolute;
@@ -6,11 +7,12 @@
   bottom: 0;
   right: 0;
   .m-h-inner{
+    display: none;
     left: 0;
     right: 0;
     max-width: 300px;
     .h-i-labels{
-      bottom: 20px;
+      bottom: 60px;
       display: block;
       position: absolute;
       border-radius: 4px!important;
@@ -66,14 +68,18 @@
         height: 0;
         &:after{
           content: ""!important;
-          display: block;
           position: absolute;
-          background: transparent;
-          left: -22px;
-          top: -22px;
-          bottom: -22px;
-          right: -20px;
-          z-index: 0;
+          width: 0;
+          height: 0;
+          left: 25px;
+          bottom: -19px;
+          box-sizing: border-box;
+          border-color: transparent transparent #fff #fff;
+          border-style: solid;
+          border-width: 10px;
+          transform-origin: 0 0;
+          transform: rotate(-45deg);
+          box-shadow: -3px 3px 5px 0 rgba(0, 0, 0, 0.07);
         }
       }
 
