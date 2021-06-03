@@ -1,11 +1,11 @@
-
+@import "./reset.scss";
 .sm-outher{
   position: fixed;
 
   top: auto;
-  bottom: 0px;
-  padding-top: 0px;
-  margin-bottom: 0px;
+  bottom: 0;
+  padding-top: 0;
+  margin-bottom: 0;
   right: 30px;
   //height: 496px;
   display: block;
@@ -64,6 +64,7 @@
       }
     }
     &.open {
+      max-width: 336px;
       >.o-h-close {
         display: block;
       }
@@ -85,12 +86,12 @@
     //background: #61dafb;
     display: flex;
     flex-direction: column;
+    max-width: 336px;
     &.open{
       height: 400px;
+
     }
-    >.o-b-history{
-      flex:1;
-    }
+    @import "./history.scss";
     >.o-b-input{
       //background: antiquewhite;
       position: relative;
