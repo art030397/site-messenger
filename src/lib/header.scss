@@ -52,13 +52,14 @@
       modiv {
         display: block;
         font-family: Arial, sans-serif;
-        overflow: hidden;
+        overflow-x: hidden;
         text-overflow: ellipsis;
         max-height: 56px;
         font-size: 15px !important;
         float: none;
         line-height: 18px;
         white-space: nowrap;
+
         &.o-c-name{
           margin-bottom: 4px;
         }
