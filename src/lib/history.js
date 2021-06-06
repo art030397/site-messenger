@@ -46,9 +46,32 @@ export const render = (state, dom) => {
                 <modiv class="h-m-badge"></modiv>
          </modiv>`
     dom.historyContainer = root.getElementsByClassName('b-h-container')[0]
-    dom.historyMoreBtn = root.getElementsByClassName('h-m-btn')[0]
+    dom.historyMoreBtn = root.getElementsByClassName('b-h-more')[0]
     dom.historyMoreBtn.addEventListener('click', ()=>{
         dom.historyContainer.scrollTop = dom.historyContainer.scrollHeight;
+        dom.historyMoreBtn.classList.add('b-hidden')
     })
     dom.historyContainer.scrollTop = dom.historyContainer.scrollHeight;
+    let lastKnownScrollPos;
+    let ticking = false;
+    let btnStatus = false;
+    dom.historyContainer.addEventListener('scroll', (e) => {
+        const target = e.currentTarget;
+        lastKnownScrollPos = target.scrollHeight - target.clientHeight - target.scrollTop;
+        if(!ticking){
+            window.requestAnimationFrame(()=>{
+                let newBtnStatus = lastKnownScrollPos < 18;
+                if(btnStatus !== newBtnStatus){
+                    if(btnStatus){
+                        dom.historyMoreBtn.classList.remove('b-hidden')
+                    }else{
+                        dom.historyMoreBtn.classList.add('b-hidden')
+                    }
+                    btnStatus = newBtnStatus;
+                }
+                ticking = false;
+            })
+        }
+        ticking = true;
+    })
 }

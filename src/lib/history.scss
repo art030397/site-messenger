@@ -106,6 +106,9 @@
       background-size: 24px 24px;
       cursor: pointer;
     }
+    &.b-hidden{
+      display: none;
+    }
   }
 
 }
