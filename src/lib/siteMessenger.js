@@ -1,5 +1,8 @@
 import content from "./content";
+import * as Header from './header.js'
 import * as History from './history.js'
+import * as Input from './input.js'
+import * as Websockets from './webSockets.js'
 
 
 
@@ -9,6 +12,12 @@ export default () => {
         document.body.insertAdjacentHTML('beforeend', content());
         const state = {
             open:false,
+            token: "sample-token",
+            websockets: {
+                domain : 'localhost',
+                port:   8889,
+            },
+            message:{status: 'ready', value: ''},
             history: [
                 {id: 1, type: "i", content: "Привет!"},
                 {id: 1, type: "i",
@@ -32,22 +41,27 @@ export default () => {
         }
         const dom = {
             header: document.getElementById('mo0473218'),
-            closeBtn: document.getElementById('mo4579052'),
             body: document.getElementById('mo231487'),
+            input: document.getElementById('mo495635'),
+
+            doRenderHistory: History.render,
+            doRenderHeader: Header.render,
+            doRenderHeaderContent: Header.renderContent,
+
+            doRenderInput: Input.render,
 
         }
         dom.header.addEventListener('click', ()=>{
             state.open = true;
+            dom.doRenderHeader(state, dom)
+            dom.doRenderHistory(state, dom)
+            dom.doRenderInput(state, dom)
             dom.body.classList.add('open');
             dom.header.classList.add('open');
         })
-        dom.closeBtn.addEventListener('click',(e)=>{
-            state.open = false;
-            dom.body.classList.remove('open');
-            dom.header.classList.remove('open');
-
-            e.stopPropagation();
-        })
-        History.render(dom.body.getElementsByClassName("o-b-history")[0], state)
+        state.ws = Websockets.start(state, dom)
+        //dom.doRenderHistory(state, dom)
+        dom.doRenderHeader(state, dom)
+        //dom.doRenderInput(state, dom)
     });
 }
