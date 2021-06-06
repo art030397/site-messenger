@@ -7,7 +7,13 @@
     height: 100%;
     overflow-y: auto;
     padding-bottom: 16px;
-
+    .h-c-date{
+      font-family: Arial,sans-serif;
+      font-size: 15px;
+      color: #697582;
+      text-align: center;
+      margin: 24px 0 22px 0;
+    }
     .h-c-item {
       padding-top: 16px;
 

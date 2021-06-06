@@ -19,15 +19,18 @@ export default () => {
             },
             message:{status: 'ready', value: ''},
             history: [
-                {id: 1, type: "i", content: "Привет!"},
+                {id: 1, type: "i", content: "Привет!", timestamp: new Date(2021, 6, 3, 11, 26)},
                 {id: 1, type: "i",
                     content:
                         "Duis aute irure dolor in reprehenderit in voluptate " +
                         "velit esse cillum dolore eu fugiat nulla pariatur. " +
                         "Excepteur sint occaecat cupidatat non proident, sunt in " +
-                        "culpa qui officia deserunt mollit anim id est laborum."
+                        "culpa qui officia deserunt mollit anim id est laborum.",
+                    timestamp: new Date(2021, 6, 3, 11, 28)
                 },
-                {id: 1, type: "o", content: "Здравствуйте!"},
+                {id: 1, type: "o", content: "Здравствуйте!",
+                    timestamp: new Date(2021, 6, 4, 8, 10)
+                },
                 {id: 1, type: "o", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
                         "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
                         "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
@@ -35,7 +38,9 @@ export default () => {
                         "Duis aute irure dolor in reprehenderit in voluptate " +
                         "velit esse cillum dolore eu fugiat nulla pariatur. " +
                         "Excepteur sint occaecat cupidatat non proident, sunt in " +
-                        "culpa qui officia deserunt mollit anim id est laborum."
+                        "culpa qui officia deserunt mollit anim id est laborum.",
+                    timestamp: new Date(2021, 6, 4, 8, 12)
+
                 },
             ]
         }

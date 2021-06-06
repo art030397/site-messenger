@@ -20,6 +20,7 @@ const connect = (state, dom)=>{
             // eslint-disable-next-line default-case
             switch (message.type){
                 case 'msg':
+                    message.data.timestamp = new Date(message.data.timestamp)
                     state.history.push(message.data)
                     state.message.status = 'ready'
                     state.message.value = ''

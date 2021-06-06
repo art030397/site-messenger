@@ -4,27 +4,38 @@ export const render = (state, dom) => {
     const root = dom.body.getElementsByClassName("o-b-history")[0]
     let previous = {}
     const renderItem = (item) => {
-        const typeClass = previous.type === item.type?' same':'';
+        let sameType  = previous.type === item.type;
+        let content = '';
+        if(!item.timestamp || !previous.timestamp ||
+            item.timestamp.getFullYear() !== previous.timestamp.getFullYear() ||
+            item.timestamp.getMonth() !== previous.timestamp.getMonth() ||
+            item.timestamp.getDate() !== previous.timestamp.getDate()
+        ){
+            sameType = true;
+            content +=
+                `<modiv class="h-c-date">${item.timestamp.toLocaleDateString()}</modiv>`
+        }
+        const typeClass = sameType?' same':'';
         previous = item;
         if(item.type === 'i'){
-            return `
-                <modiv class="h-c-item incoming${typeClass}">
+            content +=
+                `<modiv class="h-c-item incoming${typeClass}">
                     <modiv class="c-i-agent">${'Оператор'}</modiv>
                     <modiv class="c-i-body">
                         <modiv class="i-b-avatar"><modiv></modiv></modiv>
-                        <modiv class="i-b-content">${item.content}</modiv>
+                        <modiv class="i-b-content" title="${item.timestamp.toLocaleString()}">${item.content}</modiv>
                     </modiv>
-                </modiv>
-            `
+                </modiv>`
         }else{
-            return `
-                <modiv class="h-c-item outgoing${typeClass}">
+            content +=
+               `<modiv class="h-c-item outgoing${typeClass}">
                     <modiv class="c-i-body">
-                        <modiv class="i-b-content">${item.content}</modiv>
+                        <modiv class="i-b-content" title="${item.timestamp.toLocaleString()}">${item.content}</modiv>
                     </modiv>
                 </modiv>
             `
         }
+        return content;
     }
     root.innerHTML =
         `<modiv class="b-h-container">
