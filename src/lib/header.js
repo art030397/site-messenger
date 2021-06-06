@@ -35,10 +35,23 @@ export const render = (state, dom) => {
 }
 export const renderContent = (state, dom) => {
     const root = dom.header.getElementsByClassName('o-h-content')[0];
-    root.innerHTML =
+    if(state.open){
+        const o = state.operator ?? {name: '', title: ''};
+        root.innerHTML =
+            `<modiv class="o-h-operator">
+                <modiv class="h-o-avatar">
+                    <modiv class="o-a-img"></modiv>
+                </modiv>
+                <modiv class="h-o-creds">
+                    <modiv class="o-c-name">${o.name}</modiv>
+                    <modiv class="o-c-title">${o.title}</modiv>
+                </modiv>
+            </modiv>`
+    }else {
+        root.innerHTML =
+        `<modiv class="o-h-text">Сейчас на связи с Вами помощник руководителя</modiv>
+            <modiv class="o-h-logo-expanding"  style="color: rgb(240, 241, 241);">
+         </modiv>        
         `
-        <div class="o-h-text">Сейчас на связи с Вами помощник руководителя</div>
-            <div class="o-h-logo-expanding"  style="color: rgb(240, 241, 241);">
-        </div>        
-        `
+    }
 }

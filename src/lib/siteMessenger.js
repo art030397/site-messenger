@@ -17,6 +17,10 @@ export default () => {
                 domain : 'localhost',
                 port:   8889,
             },
+            operator: {
+                name: 'Алла',
+                title: 'оператор',
+            },
             message:{status: 'ready', value: ''},
             history: [
                 {id: 1, type: "i", content: "Привет!", timestamp: new Date(2021, 6, 3, 11, 26)},
