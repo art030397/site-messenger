@@ -22,7 +22,8 @@ export const render = (state, dom) => {
         if(!dom.inputSendBtn.disabled && value.length > 0){
             msg.status = 'sending';
             msg.value = value;
-            state.ws.send(value)
+            const sendData = JSON.stringify({type: 'msg', content: value})
+            state.ws.send(sendData)
             render(state, dom)
         }
     })

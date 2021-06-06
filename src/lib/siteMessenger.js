@@ -64,7 +64,7 @@ export default () => {
             dom.body.classList.add('open');
             dom.header.classList.add('open');
         })
-        state.ws = Websockets.start(state, dom)
+        Websockets.start(state, dom)
         //dom.doRenderHistory(state, dom)
         dom.doRenderHeader(state, dom)
         //dom.doRenderInput(state, dom)

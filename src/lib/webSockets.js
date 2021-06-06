@@ -1,17 +1,19 @@
 
-let ws;
 export const start = (state, dom) => {
-    return connect(state, dom);
+    connect(state, dom);
 }
 
 const connect = (state, dom)=>{
     const config = state.websockets;
-    ws = new WebSocket('ws://' + config.domain + ':'+config.port)
+    const ws = new WebSocket('ws://' + config.domain + ':'+config.port)
     ws.onopen = (e) => {
         console.log('onOpen', e)
     }
     ws.onclose = (e)=>{
-        console.log('onclose', e)
+        //console.log('onclose', e)
+        setTimeout(()=>{
+            connect(state, dom);
+        }, 1000)
     }
     ws.onmessage = (event) => {
         try{
@@ -37,10 +39,6 @@ const connect = (state, dom)=>{
     ws.onerror = (e) => {
         console.log('onerror', e)
     }
-    return ws;
+    state.ws = ws;
 
-}
-
-export const send = (state, dom, msg) => {
-    ws.send({token: state.token, content: msg})
 }
