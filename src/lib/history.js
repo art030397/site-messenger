@@ -41,7 +41,7 @@ export const render = (state, dom) => {
         `<modiv class="b-h-container">
             ${state.history.map(renderItem).join('')}
          </modiv>
-         <modiv class="b-h-more">
+         <modiv class="b-h-more b-hidden">
             <modiv class="h-m-btn"></modiv>
             <modiv class="h-m-badge"></modiv>
          </modiv>`
@@ -55,23 +55,26 @@ export const render = (state, dom) => {
     let lastKnownScrollPos;
     let ticking = false;
     let btnStatus = false;
-    dom.historyContainer.addEventListener('scroll', (e) => {
-        const target = e.currentTarget;
-        lastKnownScrollPos = target.scrollHeight - target.clientHeight - target.scrollTop;
-        if(!ticking){
-            window.requestAnimationFrame(()=>{
-                let newBtnStatus = lastKnownScrollPos < 18;
-                if(btnStatus !== newBtnStatus){
-                    if(btnStatus){
-                        dom.historyMoreBtn.classList.remove('b-hidden')
-                    }else{
-                        dom.historyMoreBtn.classList.add('b-hidden')
+    // Управляем кнопкой перемотки только если в истории есть сообщения
+    if(state.history.length > 0) {
+        dom.historyContainer.addEventListener('scroll', (e) => {
+            const target = e.currentTarget;
+            lastKnownScrollPos = target.scrollHeight - target.clientHeight - target.scrollTop;
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    let newBtnStatus = lastKnownScrollPos < 18;
+                    if (btnStatus !== newBtnStatus) {
+                        if (btnStatus) {
+                            dom.historyMoreBtn.classList.remove('b-hidden')
+                        } else {
+                            dom.historyMoreBtn.classList.add('b-hidden')
+                        }
+                        btnStatus = newBtnStatus;
                     }
-                    btnStatus = newBtnStatus;
-                }
-                ticking = false;
-            })
-        }
-        ticking = true;
-    })
+                    ticking = false;
+                })
+            }
+            ticking = true;
+        })
+    }
 }

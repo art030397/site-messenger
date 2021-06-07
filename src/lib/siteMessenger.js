@@ -12,41 +12,13 @@ export default () => {
         document.body.insertAdjacentHTML('beforeend', content());
         const state = {
             open:false,
-            token: "sample-token",
             websockets: {
                 domain : 'localhost',
                 port:   8889,
             },
-            operator: {
-                name: 'Алла',
-                title: 'оператор',
-            },
+            operator: {},
             message:{status: 'ready', value: ''},
-            history: [
-                {id: 1, type: "i", content: "Привет!", timestamp: new Date(2021, 6, 3, 11, 26)},
-                {id: 1, type: "i",
-                    content:
-                        "Duis aute irure dolor in reprehenderit in voluptate " +
-                        "velit esse cillum dolore eu fugiat nulla pariatur. " +
-                        "Excepteur sint occaecat cupidatat non proident, sunt in " +
-                        "culpa qui officia deserunt mollit anim id est laborum.",
-                    timestamp: new Date(2021, 6, 3, 11, 28)
-                },
-                {id: 1, type: "o", content: "Здравствуйте!",
-                    timestamp: new Date(2021, 6, 4, 8, 10)
-                },
-                {id: 1, type: "o", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, " +
-                        "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. " +
-                        "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris " +
-                        "nisi ut aliquip ex ea commodo consequat. " +
-                        "Duis aute irure dolor in reprehenderit in voluptate " +
-                        "velit esse cillum dolore eu fugiat nulla pariatur. " +
-                        "Excepteur sint occaecat cupidatat non proident, sunt in " +
-                        "culpa qui officia deserunt mollit anim id est laborum.",
-                    timestamp: new Date(2021, 6, 4, 8, 12)
-
-                },
-            ]
+            history: []
         }
         const dom = {
             header: document.getElementById('mo0473218'),

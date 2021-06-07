@@ -5,7 +5,7 @@ export const start = (state, dom) => {
 
 const connect = (state, dom)=>{
     const config = state.websockets;
-    const ws = new WebSocket('ws://' + config.domain + ':'+config.port)
+    const ws = new WebSocket('ws://' + config.domain + ':'+config.port+'/?token='+ window.localStorage.getItem('moSiteMessengerToken'))
     ws.onopen = (e) => {
         console.log('onOpen', e)
     }
@@ -20,12 +20,29 @@ const connect = (state, dom)=>{
             const message = JSON.parse(event.data);
             console.log('onmessage', message)
             // eslint-disable-next-line default-case
+            const d = message.data;
+            // eslint-disable-next-line default-case
             switch (message.type){
                 case 'msg':
-                    message.data.timestamp = new Date(message.data.timestamp)
-                    state.history.push(message.data)
+                    d.timestamp = new Date(d.timestamp)
+                    state.history.push(d)
                     state.message.status = 'ready'
                     state.message.value = ''
+                    dom.doRenderHistory(state, dom)
+                    dom.doRenderInput(state, dom)
+                    break;
+                case 'start':
+                    window.localStorage.setItem('moSiteMessengerToken', d.token)
+                    state.token = d.token;
+                // eslint-disable-next-line no-fallthrough
+                case 'restore':
+                    state.history = d.history;
+                    for(const h of state.history){
+                        h.timestamp = new Date(h.timestamp);
+                    }
+                    state.operator = d.operator;
+                    state.message = {status: 'ready', value: ''};
+                    dom.doRenderHeader(state, dom)
                     dom.doRenderHistory(state, dom)
                     dom.doRenderInput(state, dom)
                     break;
